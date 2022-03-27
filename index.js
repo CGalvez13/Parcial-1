@@ -30,5 +30,13 @@ const APIController = (function() {
             const data  = await result.json();
             return data.items
       }
-}
-)
+
+      return {
+          getToken()  {
+            return _getToken();
+          },
+          getTracks(token, tracksEndPoint) {
+            return _getTracks(token, tracksEndPoint);
+          }
+      }
+})();
