@@ -40,3 +40,35 @@ const APIController = (function() {
           }
       }
 })();
+
+  //Modulo UI
+const UIController = (function()){
+
+      //objeto para referencias de selectores de html
+      const DOMElements = {
+        selectGenre: '#select_genre',
+        selectPlaylist: '#select_playlist',
+        buttonSubmit: '#btn_submit',
+        divSongDetail: '#song-detail',
+        hfToken: '#hidden_token',
+        divSonglist: '.song-list'
+      }
+  //Metodos Publicos
+  return {
+
+      //archivos  input
+      inputField() {
+        return {
+          genre: document.querySelector(DOMElements.selectGenre),
+          playlist: document.querySelector(DOMElements.selectPlaylist),
+          tracks: document.querySelector(DOMElements.divSonglist),
+          submit: document.querySelector(DOMElements.buttonSubmit),
+          songDetail: document.querySelector(DOMElements.divSongDetail)
+        }
+      },
+      
+  }
+
+
+
+}
