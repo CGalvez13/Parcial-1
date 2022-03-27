@@ -10,7 +10,7 @@ const APIController = (function() {
           method: 'POST',
           headers: {
               'Content-Type' : 'aplication/x-www-form-urlencoded',
-              'Authorization' : 'Basic' +btoa( clientId + ':' + clientSecret)
+              'Authorization' : 'Basic' + btoa( clientId + ':' + clientSecret)
           },
           body: 'grant_type=client_credentials'
         });
@@ -18,6 +18,17 @@ const APIController = (function() {
         const data = await result.json();
         return data.acess_token;
       }
+      const _getTracks = async (token, tracksEndPoint) => {
 
+            const limit = 10;
+
+            const result = await fetch(`${tracksEndPoint}?limit=${limit}`, {
+                  method: 'Get',
+                  headers: { 'Authorization' : 'Bearer' + token}
+            });
+
+            const data  = await result.json();
+            return data.items
+      }
 }
 )
