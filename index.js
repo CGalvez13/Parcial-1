@@ -6,28 +6,30 @@ const APIController = (function() {
       //metodos privados
       const _getToken = async () => {
 
-        const result = await fetch('https://accounts.spotify.com/api/token', {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/x-www-form-urlencoded',
-                'Authorization' : 'Basic ' + btoa(clientId + ':' + clientSecret)
-            },
-            body: 'grant_type=client_credentials'
-        });
+          const result = await fetch('https://accounts.spotify.com/api/token', {
+              method: 'POST',
+              headers: {
+                  'Content-Type' : 'application/x-www-form-urlencoded',
+                  'Authorization' : 'Basic ' + btoa(clientId + ':' + clientSecret)
+              },
+              body: 'grant_type=client_credentials'
+          });
 
-        const data = await result.json();
-        return data.acess_token;
+          const data = await result.json();
+          return data.access_token;
       }
-      const _getGenres = async (token) => {
 
-          const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
+    const _getGenres = async (token) => {
+
+          const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_MX`, {
               method: 'GET',
               headers: { 'Authorization' : 'Bearer ' + token}
           });
 
-        const data = await result.json();
-        return data.categories.items;
-    }
+          const data = await result.json();
+          return data.categories.items;
+      }
+
     const _getPlaylistByGenre = async (token, genreId) => {
 
         const limit = 10;
@@ -63,7 +65,7 @@ const APIController = (function() {
         return data;
     }
 
-      return {
+    return {
         getToken() {
             return _getToken();
         },
@@ -79,7 +81,7 @@ const APIController = (function() {
         getTrack(token, trackEndPoint) {
             return _getTrack(token, trackEndPoint);
         }
-      }
+    }
 })();
 
   //Modulo UI
