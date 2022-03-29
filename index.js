@@ -21,7 +21,7 @@ const APIController = (function() {
 
     const _getGenres = async (token) => {
 
-          const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_MX`, {
+          const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
               method: 'GET',
               headers: { 'Authorization' : 'Bearer ' + token}
           });
@@ -30,30 +30,32 @@ const APIController = (function() {
           return data.categories.items;
       }
 
-    const _getPlaylistByGenre = async (token, genreId) => {
+      const _getPlaylistByGenre = async (token, genreId) => {
 
-        const limit = 10;
+          const limit = 10;
 
-        const result = await fetch(`https://api.spotify.com/v1/browse/categories/${genreId}/playlists?limit=${limit}`, {
-            method: 'GET',
-            headers: { 'Authorization' : 'Bearer ' + token}
-        });
+          const result = await fetch(`https://api.spotify.com/v1/browse/categories/${genreId}/playlists?limit=${limit}`, {
+              method: 'GET',
+              headers: { 'Authorization' : 'Bearer ' + token}
+          });
 
-        const data = await result.json();
-        return data.playlists.items;
-    }
+          const data = await result.json();
+          return data.playlists.items;
+      }
+
       const _getTracks = async (token, tracksEndPoint) => {
 
-            const limit = 10;
+          const limit = 10;
 
-            const result = await fetch(`${tracksEndPoint}?limit=${limit}`, {
-                  method: 'Get',
-                  headers: { 'Authorization' : 'Bearer' + token}
-            });
+          const result = await fetch(`${tracksEndPoint}?limit=${limit}`, {
+              method: 'GET',
+              headers: { 'Authorization' : 'Bearer ' + token}
+          });
 
-            const data  = await result.json();
-            return data.items
+          const data = await result.json();
+          return data.items;
       }
+
       const _getTrack = async (token, trackEndPoint) => {
 
         const result = await fetch(`${trackEndPoint}`, {
